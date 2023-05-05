@@ -22,8 +22,9 @@ public class ToDoRepository {
         return new ArrayList<>(todos.values());
     }
 
-    public void addToDo(ToDo todo) {
+    public List<ToDo> addToDo(ToDo todo) {
         todos.put(todo.getId(), todo);
+        return new ArrayList<>(todos.values());
     }
 
     public ToDo getToDoById(String id) {
@@ -34,8 +35,9 @@ public class ToDoRepository {
         return todo;
     }
 
-    public void deleteProductById(String id) {
+    public List<ToDo> deleteProductById(String id) {
         todos.remove(id);
+        return new ArrayList<>(todos.values());
     }
 
     public boolean toDoExists(String id) {
