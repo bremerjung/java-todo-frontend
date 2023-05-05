@@ -35,11 +35,11 @@ public class ToDoService {
         }
     }
 
-    public void updateToDo(String id, ToDo todo) {
+    public ToDo updateToDo(String id, ToDo todo) {
         if (!repository.toDoExists(id)) {
             throw new ToDoNotFoundException(id);
         } else {
-            repository.updateToDo(id, todo);
+            return repository.updateToDo(id, todo);
         }
     }
 }

@@ -14,6 +14,11 @@ public class ToDoController {
 
     private final ToDoService service;
 
+    @GetMapping("todo/{id}")
+    public ToDo getToDoById(@PathVariable String id) {
+        return service.getToDoById(id);
+    }
+
     @GetMapping("todo")
     public List<ToDo> getAllToDos() {
         return service.getAllToDos();
@@ -24,14 +29,9 @@ public class ToDoController {
         service.addToDo(todo);
     }
 
-    @GetMapping("todo/{id}")
-    public ToDo getToDoById(@PathVariable String id) {
-        return service.getToDoById(id);
-    }
-
     @PutMapping("todo/{id}")
-    public void updateTodo(@PathVariable String id, @RequestBody ToDo todo) {
-        service.updateToDo(id, todo);
+    public ToDo updateTodo(@PathVariable String id, @RequestBody ToDo todo) {
+        return service.updateToDo(id, todo);
     }
 
     @DeleteMapping("todo/{id}")

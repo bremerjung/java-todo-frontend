@@ -42,7 +42,9 @@ public class ToDoRepository {
         return todos.containsKey(id);
     }
 
-    public void updateToDo(String id, ToDo todo) {
+    public ToDo updateToDo(String id, ToDo todo) {
+        todo.setId(id);
         todos.replace(id, todo);
+        return todo;
     }
 }
