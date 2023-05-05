@@ -1,7 +1,7 @@
 
 name: Java for testing with Maven
 
-on: push
+#on: push
 
 jobs:
   build:
