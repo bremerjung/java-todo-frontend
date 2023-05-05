@@ -181,8 +181,32 @@ class IntegrationTestsForToDoController {
 
     @Test
     @DirtiesContext
-    void whenDeleteToDo_ThenReturnStatusCode200() {
+    void whenDeleteToDo_ThenToDoListContainsOneElementLess_AndReturnStatusCode200() throws Exception {
+        String id = "3";
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/todo/" + id)).andExpect(status().isOk());
 
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get("/api/todo"))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        [
+                             {
+                                 "id": "1",
+                                 "description": "Rasen mähen",
+                                 "status": "OPEN"
+                             },
+                             {
+                                 "id": "2",
+                                 "description": "Wäsche waschen",
+                                 "status": "OPEN"
+                             },
+                             {
+                                 "id": "4",
+                                 "description": "Freitagsaufgabe",
+                                 "status": "IN_PROGRESS"
+                             }
+                         ]
+                        """));
     }
 
 }
