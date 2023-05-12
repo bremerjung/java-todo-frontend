@@ -1,0 +1,9 @@
+.editModalContainer {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.editModalContainer > * {
+    margin-bottom: 10px;
+}
