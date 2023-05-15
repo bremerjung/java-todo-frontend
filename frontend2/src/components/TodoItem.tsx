@@ -12,7 +12,8 @@ import TodoEditModal from "./TodoEditModal";
 
 type Props = {
     todo:Todo
-    getAll:() => void;
+    getAll:() => void,
+    onSave: (updatedTodo: Todo) => void;
 }
 
 function TodoItem(props:Props) {
@@ -78,7 +79,7 @@ function TodoItem(props:Props) {
             )}
 
             {isEditModalOpen && (
-                <TodoEditModal todo={props.todo} closeModal={closeEditModal} />
+                <TodoEditModal todo={props.todo} closeModal={closeEditModal}  onSave={props.onSave}/>
             )}
         </div>
     );

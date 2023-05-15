@@ -33,6 +33,18 @@ function TodoList() {
         setInputValue(event.target.value);
     }
 
+    function handleSave(updatedTodo: Todo) {
+        axios
+            .put(`/api/todo/${updatedTodo.id}`, updatedTodo)
+            .then(() => {
+                // Aktualisiere die Liste der Todos
+                getAllTodos();
+            })
+            .catch((error) => {
+                console.error('Fehler beim Speichern des Todos:', error);
+            });
+    }
+
     return (
         <div>
             <h1>My personal todo list</h1>
@@ -40,17 +52,17 @@ function TodoList() {
                 <div className="todoListColumn">
                     <h2 className="boardColumnHeader">OPEN</h2>
                     {todos.filter((currentTodo:Todo) => currentTodo.status==="OPEN").map((currentTodo:Todo) =>
-                        <TodoItem key={currentTodo.id} todo={currentTodo} getAll={getAllTodos}></TodoItem>)}
+                        <TodoItem key={currentTodo.id} todo={currentTodo} getAll={getAllTodos} onSave={handleSave}></TodoItem>)}
                 </div>
                 <div className="todoListColumn">
                     <h2 className="boardColumnHeader">IN PROGRESS </h2>
                     {todos.filter((currentTodo:Todo) => currentTodo.status==="IN_PROGRESS").map((currentTodo:Todo) =>
-                    <TodoItem key={currentTodo.id} todo={currentTodo} getAll={getAllTodos}></TodoItem>)}
+                    <TodoItem key={currentTodo.id} todo={currentTodo} getAll={getAllTodos} onSave={handleSave}></TodoItem>)}
                 </div>
                 <div className="todoListColumn">
                     <h2 className="boardColumnHeader">DONE</h2>
                     {todos.filter((currentTodo:Todo) => currentTodo.status==="DONE").map((currentTodo:Todo) =>
-                    <TodoItem key={currentTodo.id} todo={currentTodo} getAll={getAllTodos}></TodoItem>)}
+                    <TodoItem key={currentTodo.id} todo={currentTodo} getAll={getAllTodos} onSave={handleSave}></TodoItem>)}
                 </div>
             </div>
 
